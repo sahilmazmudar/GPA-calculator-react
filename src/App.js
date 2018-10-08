@@ -10,45 +10,65 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      firstCourse: 0,
-      secondCourse: 0,
+      course1: '',
+      course2: '',
+      course3: '',
+      course4: '',
+      course5: '',
       average: 0
     };
-    this.handleCourse1Change = this.handleCourse1Change.bind(this);
-    this.handleCourse2Change = this.handleCourse2Change.bind(this); 
+    this.handleChange = this.handleChange.bind(this);
   }
   
-  handleCourse1Change (event) {
-    this.setState({firstCourse: Number(event.target.value)});
+  handleChange (event) {
+    this.setState({
+      [event.target.name]: Number(event.target.value)
+    });
   }
 
-  handleCourse2Change (event) {
-    this.setState({secondCourse: Number(event.target.value)});
-  }
-
-  addAction = (event) => {
-    let x = (this.state.firstCourse + this.state.secondCourse)/2
+  averageAction = (event) => {
+    let x = (this.state.course1 + this.state.course2 + this.state.course3 + this.state.course4 + this.state.course5)/5
     this.setState({average: x})
   }
   
-  render () {
+  render () {  
     return (
-      <form>
-        <label>Enter course1:
-          <input value={this.state.firstCourse} 
-             name="firstCourse"
-             type="number"
-             onChange={this.handleCourse1Change}/>
-        </label>
-        <label>Enter course2:
-          <input value={this.state.secondCourse} 
-             name="secondCourse"
-             type="number"
-             onChange={this.handleCourse2Change}/>
-        </label> 
-        <input type="button" onClick={this.addAction} value="Average"/>
-        <input type='text' value={this.state.average} readOnly/>        
-      </form>
+      <div>
+        <form>
+          <label>Enter course1:
+            <input value={this.state.course1} 
+               name="course1"
+               type="text"
+               onChange={this.handleChange}/>
+          </label><br/>
+          <label>Enter course2:
+            <input value={this.state.course2} 
+               name="course2"
+               type="text"
+               onChange={this.handleChange}/>
+          </label><br/>
+          <label>Enter course3:
+            <input value={this.state.course3} 
+               name="course3"
+               type="text"
+               onChange={this.handleChange}/>
+          </label><br/>
+          <label>Enter course4:
+            <input value={this.state.course4} 
+               name="course4"
+               type="text"
+               onChange={this.handleChange}/>
+          </label><br/>
+          <label>Enter course5:
+            <input value={this.state.course5} 
+               name="course5"
+               type="text"
+               onChange={this.handleChange}/>
+          </label>          
+        </form>
+        <input type="button" onClick={this.averageAction} value="Average"/>
+        <input type='text' value={this.state.average} readOnly/> 
+      </div>       
     );
   }
 }
