@@ -23,6 +23,7 @@ export default class ValidationForm extends React.Component{
 		});
 	}
 
+
 	validate = () => {
 		let gradeError= '';
 		let creditsError= '';
@@ -55,11 +56,20 @@ export default class ValidationForm extends React.Component{
 		}
 	}
 
+
 	render () {  
+		var labelStyle = {
+		  color: 'red',
+		};
+		var formStyle = {
+		  background: 'yellow',
+		};
+
 		return (
+		<html style={formStyle}>
 		  <div>
-		    <form >
-		      <label>Course 1 grade:
+		    <form style={formStyle}>
+		      <label style={labelStyle}>Course 1 grade:
 		        <input value={this.state.course1} 
 		           name="course1"
 		           type="text"
@@ -123,7 +133,8 @@ export default class ValidationForm extends React.Component{
 		    </form>
 		    <input type="button" onClick={this.averageAction} value="Average"/>
 		    <input type='text' value={parseFloat(this.state.average).toFixed(2)} readOnly/> 
-		  </div>       
+		  </div>   
+		 </html>    
 		);
 	}
 }
